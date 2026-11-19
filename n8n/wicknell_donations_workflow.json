@@ -1,0 +1,1076 @@
+{
+  "name": "Wicknell Donations – PostgreSQL",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        0
+      ],
+      "id": "afad4b52-c867-4a4b-953d-b96bb09db7d2",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n{\n  \"tweet_id\": String($json.id),\n  \"author_id\": String($json.author.id),\n  \"username\": $json.author.userName,\n  \"tweet_text\": $json.text,\n  \"created_at\": $json.createdAt,\n  \"tweet_url\": $json.url,\n  \"reply_count\": Number($json.replyCount ?? 0),\n  \"retweet_count\": Number($json.retweetCount ?? 0),\n  \"like_count\": Number($json.likeCount ?? 0),\n  \"view_count\": Number($json.viewCount ?? 0)\n}\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -48,
+        -448
+      ],
+      "id": "2ae247fd-7eb8-4fc0-8219-220867ccd0fe",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "raw_tweets",
+          "mode": "list",
+          "cachedResultName": "raw_tweets"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "processed": false
+          },
+          "matchingColumns": [
+            "tweet_id"
+          ],
+          "schema": [
+            {
+              "id": "tweet_id",
+              "displayName": "tweet_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "author_id",
+              "displayName": "author_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "tweet_text",
+              "displayName": "tweet_text",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "tweet_url",
+              "displayName": "tweet_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "media_urls",
+              "displayName": "media_urls",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "reply_count",
+              "displayName": "reply_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "retweet_count",
+              "displayName": "retweet_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "like_count",
+              "displayName": "like_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "view_count",
+              "displayName": "view_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "raw_json",
+              "displayName": "raw_json",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "collected_at",
+              "displayName": "collected_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "processed",
+              "displayName": "processed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        208,
+        -448
+      ],
+      "id": "b24208c2-86de-413a-be63-6eb854fcd936",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.twitterapi.io/twitter/user/last_tweets",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "userName",
+              "value": "wicknellchivayo"
+            },
+            {
+              "name": "includeReplies",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -304,
+        -80
+      ],
+      "id": "390415dc-8644-44b3-8ded-0b19237e485a",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.tweets",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -448
+      ],
+      "id": "3d3a3b34-1c68-4d99-a401-b3ad81e9614a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "text": "=Tweet ID: {{$json.tweet_id}}\nPost date: {{$json.created_at}}\n\nTweet text:\n{{$json.tweet_text}}",
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"tweet_id\": {\n      \"type\": \"string\",\n      \"description\": \"Copy the exact Tweet ID supplied in the input.\"\n    },\n    \"is_donation\": {\n      \"type\": \"boolean\",\n      \"description\": \"True when the post announces, promises, delivers or describes one or more cash or non-cash donations. Donations include money, vehicles, property, equipment, computers, school support, medical support and other material gifts.\"\n    },\n    \"donations\": {\n      \"type\": \"array\",\n      \"description\": \"Create one record for every independently valued gift. Separate different gifts and independently allocated gifts into separate records. When one amount is shared across several recipients or projects, create one record only, list every recipient in beneficiary_names and set allocation_scope to Shared. Never repeat a shared total for every beneficiary.\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"gift_number\": {\n            \"type\": \"integer\",\n            \"description\": \"Sequential gift number beginning at 1 within this post.\"\n          },\n          \"recipient_name\": {\n            \"type\": \"string\",\n            \"description\": \"Name of the primary recipient. For a shared allocation, use an appropriate collective name such as Gandami Community Projects.\"\n          },\n          \"beneficiary_names\": {\n            \"type\": \"array\",\n            \"description\": \"List every named person, institution, school, church, trust, community or organization benefiting from this gift. For an individual gift, include the individual recipient. Do not omit names.\",\n            \"items\": {\n              \"type\": \"string\"\n            }\n          },\n          \"recipient_type\": {\n            \"type\": \"string\",\n            \"description\": \"Use Person, School, Church, Trust, Organization, Community, Government Institution, Group or Other.\"\n          },\n          \"allocation_scope\": {\n            \"type\": \"string\",\n            \"description\": \"Use Individual when the gift belongs to one recipient; Per Recipient when a stated amount or item is given to each member; Shared when one total amount jointly covers several named beneficiaries; or Group when recipients are described collectively and their individual names are unknown.\"\n          },\n          \"donation_type\": {\n            \"type\": \"string\",\n            \"description\": \"Use Cash, Vehicle, Equipment, Property, Education Support, Medical Support, Service or Other.\"\n          },\n          \"item_name\": {\n            \"type\": \"string\",\n            \"description\": \"Specific item or support provided, such as Cash, Toyota Land Cruiser 300 Series ZX, Toyota Coaster Bus, Single-Cab Pickup, Desktop Computer, Laptop, Printer, School Upgrading or Clinic Upgrading.\"\n          },\n          \"quantity\": {\n            \"type\": \"number\",\n            \"description\": \"Number of items or known recipients covered by this gift. Use 0 only when the quantity is not stated and cannot be determined directly.\"\n          },\n          \"amount_original\": {\n            \"type\": \"number\",\n            \"description\": \"Exact total monetary amount explicitly stated for this distinct gift. If one total amount jointly covers multiple beneficiaries, create only one record, store that total once, set allocation_scope to Shared and list all recipients in beneficiary_names. For a per-recipient amount, do not place it here unless the total is also explicitly stated. Use 0 for non-cash gifts without a stated value.\"\n          },\n          \"amount_per_recipient\": {\n            \"type\": \"number\",\n            \"description\": \"Amount explicitly stated for each recipient, such as USD 1500 each or USD 10000 each. Use 0 when there is no per-recipient amount. Do not invent a total when the number of recipients is unknown.\"\n          },\n          \"currency\": {\n            \"type\": \"string\",\n            \"description\": \"Currency code such as USD, ZAR, ZWG, GBP or EUR. Use an empty string for non-cash gifts without a stated monetary value.\"\n          },\n          \"amount_usd\": {\n            \"type\": \"number\",\n            \"description\": \"Copy amount_original when currency is USD. For a Per Recipient allocation, use the USD amount per recipient only when amount_original is not stated. Use 0 for other currencies or non-cash gifts without a stated value. Never invent exchange rates.\"\n          },\n          \"purpose\": {\n            \"type\": \"string\",\n            \"description\": \"Reason for the donation, such as fuel, education, church service, transportation, technology, school development, healthcare or community development.\"\n          },\n          \"donation_date\": {\n            \"type\": \"string\",\n            \"description\": \"Date in YYYY-MM-DD format. Use the supplied post date for a current donation announcement unless another donation date is explicitly stated.\"\n          },\n          \"country\": {\n            \"type\": \"string\",\n            \"description\": \"Country of the recipient or project. Use an empty string when it cannot be identified from the post.\"\n          },\n          \"location\": {\n            \"type\": \"string\",\n            \"description\": \"Town, city, district, province or specific place associated with the recipient or project. Use an empty string when unknown.\"\n          },\n          \"donation_theme\": {\n            \"type\": \"string\",\n            \"description\": \"Choose the best theme: Education & Youth, Health & Medicine, Religion, Sports, Housing, Transport, Economic Opportunity & Livelihoods, Humanitarian & Emergency, Arts Culture & Media, Community Development or General Other.\"\n          },\n          \"commitment_status\": {\n            \"type\": \"string\",\n            \"description\": \"Use Promised for future commitments, Donated when the author states the donation is being made, Delivered when receipt or delivery is confirmed, or Previously Donated when describing an earlier donation.\"\n          },\n          \"source_excerpt\": {\n            \"type\": \"string\",\n            \"description\": \"A short exact excerpt from the post that directly supports the recipient, gift and amount. Do not add information that is absent from the post.\"\n          },\n          \"confidence_score\": {\n            \"type\": \"number\",\n            \"description\": \"Confidence between 0 and 1 that this individual gift record is accurate.\"\n          },\n          \"ai_explanation\": {\n            \"type\": \"string\",\n            \"description\": \"Briefly explain the evidence for this gift and whether its value is individual, per-recipient, shared or unstated.\"\n          }\n        },\n        \"required\": [\n          \"gift_number\",\n          \"recipient_name\",\n          \"beneficiary_names\",\n          \"recipient_type\",\n          \"allocation_scope\",\n          \"donation_type\",\n          \"item_name\",\n          \"quantity\",\n          \"amount_original\",\n          \"amount_per_recipient\",\n          \"currency\",\n          \"amount_usd\",\n          \"purpose\",\n          \"donation_date\",\n          \"country\",\n          \"location\",\n          \"donation_theme\",\n          \"commitment_status\",\n          \"source_excerpt\",\n          \"confidence_score\",\n          \"ai_explanation\"\n        ]\n      }\n    }\n  },\n  \"required\": [\n    \"tweet_id\",\n    \"is_donation\",\n    \"donations\"\n  ]\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        464,
+        -64
+      ],
+      "id": "fe40acb9-fbf8-422d-a376-99212492dd45",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "cebf512d-cbc9-4fa6-a85e-f999ec17e303",
+              "leftValue": true,
+              "rightValue": "={{$json.output.is_donation}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        976,
+        -64
+      ],
+      "id": "e55acd51-c6c6-4a14-8c42-b525fcb7bf4e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.donations",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        976,
+        -464
+      ],
+      "id": "8f8c94d5-2942-42ef-9088-1e23cb596776",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n{\n  \"donation_key\": String($json.output.tweet_id) + \"-\" + String($json[\"output.donations\"].gift_number),\n  \"tweet_id\": String($json.output.tweet_id),\n  \"recipient_name\": $json[\"output.donations\"].recipient_name,\n  \"beneficiary_names\": JSON.stringify($json[\"output.donations\"].beneficiary_names),\n  \"recipient_type\": $json[\"output.donations\"].recipient_type,\n  \"allocation_scope\": $json[\"output.donations\"].allocation_scope,\n  \"donation_type\": $json[\"output.donations\"].donation_type,\n  \"item_name\": $json[\"output.donations\"].item_name,\n  \"quantity\": Number($json[\"output.donations\"].quantity || 0),\n  \"donation_description\": $json[\"output.donations\"].item_name + \" — \" + $json[\"output.donations\"].purpose,\n  \"amount_original\": Number($json[\"output.donations\"].amount_original) || null,\n  \"amount_per_recipient\": Number($json[\"output.donations\"].amount_per_recipient) || null,\n  \"currency\": $json[\"output.donations\"].currency || null,\n  \"amount_usd\": Number($json[\"output.donations\"].amount_usd) || null,\n  \"purpose\": $json[\"output.donations\"].purpose,\n  \"donation_date\": $json[\"output.donations\"].donation_date || null,\n  \"country\": $json[\"output.donations\"].country || null,\n  \"location\": $json[\"output.donations\"].location || null,\n  \"donation_theme\": $json[\"output.donations\"].donation_theme,\n  \"commitment_status\": $json[\"output.donations\"].commitment_status,\n  \"source_excerpt\": $json[\"output.donations\"].source_excerpt,\n  \"confidence_score\": Number($json[\"output.donations\"].confidence_score),\n  \"ai_explanation\": $json[\"output.donations\"].ai_explanation\n}\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1376,
+        -464
+      ],
+      "id": "7b78934c-2f23-4386-b075-1b17abcf758e",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "donations",
+          "mode": "list",
+          "cachedResultName": "donations"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "donation_id": 0,
+            "amount_original": 0,
+            "amount_usd": 0,
+            "confidence_score": 0,
+            "quantity": 0,
+            "amount_per_recipient": 0
+          },
+          "matchingColumns": [
+            "donation_key"
+          ],
+          "schema": [
+            {
+              "id": "donation_id",
+              "displayName": "donation_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tweet_id",
+              "displayName": "tweet_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donor_name",
+              "displayName": "donor_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "recipient_name",
+              "displayName": "recipient_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donation_description",
+              "displayName": "donation_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "amount_original",
+              "displayName": "amount_original",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "currency",
+              "displayName": "currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "amount_usd",
+              "displayName": "amount_usd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donation_date",
+              "displayName": "donation_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "country",
+              "displayName": "country",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donation_theme",
+              "displayName": "donation_theme",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "confidence_score",
+              "displayName": "confidence_score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "ai_explanation",
+              "displayName": "ai_explanation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "extracted_at",
+              "displayName": "extracted_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donation_key",
+              "displayName": "donation_key",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "recipient_type",
+              "displayName": "recipient_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "donation_type",
+              "displayName": "donation_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "item_name",
+              "displayName": "item_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "quantity",
+              "displayName": "quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "amount_per_recipient",
+              "displayName": "amount_per_recipient",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "purpose",
+              "displayName": "purpose",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "commitment_status",
+              "displayName": "commitment_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "source_excerpt",
+              "displayName": "source_excerpt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "beneficiary_names",
+              "displayName": "beneficiary_names",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "allocation_scope",
+              "displayName": "allocation_scope",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1792,
+        -464
+      ],
+      "id": "6db1f0de-7936-4100-85a2-58fdef7cfa4f",
+      "name": "Insert or update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{\n{\n  \"tweet_id\": String($json.tweet_id || $json.output.tweet_id),\n  \"processed\": true\n}\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1872,
+        -48
+      ],
+      "id": "269c945e-d2dc-4a86-87b5-de345e40beb4",
+      "name": "Mark as Processed"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "raw_tweets",
+          "mode": "list",
+          "cachedResultName": "raw_tweets"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "processed": false,
+            "reply_count": 0,
+            "retweet_count": 0,
+            "like_count": 0,
+            "view_count": 0
+          },
+          "matchingColumns": [
+            "tweet_id"
+          ],
+          "schema": [
+            {
+              "id": "tweet_id",
+              "displayName": "tweet_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "author_id",
+              "displayName": "author_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tweet_text",
+              "displayName": "tweet_text",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tweet_url",
+              "displayName": "tweet_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "media_urls",
+              "displayName": "media_urls",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reply_count",
+              "displayName": "reply_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "retweet_count",
+              "displayName": "retweet_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "like_count",
+              "displayName": "like_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "view_count",
+              "displayName": "view_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "raw_json",
+              "displayName": "raw_json",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "collected_at",
+              "displayName": "collected_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processed",
+              "displayName": "processed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2176,
+        -48
+      ],
+      "id": "a2cc66c3-0d70-4dc1-8916-337d247059fb",
+      "name": "Update rows in a table",
+      "credentials": {
+        "postgres": {
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -480,
+        -176
+      ],
+      "id": "749bd404-5131-47c0-b89c-a0a1b2ea910b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    tweet_id,\n    username,\n    tweet_text,\n    created_at,\n    processed\nFROM public.raw_tweets\nWHERE processed = false\nORDER BY created_at DESC\nLIMIT 20;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        432,
+        -448
+      ],
+      "id": "5d47a931-017b-41e1-8274-83694b51b7b0",
+      "name": "Get Unprocessed Tweets",
+      "executeOnce": true,
+      "credentials": {
+        "postgres": {
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        736,
+        336
+      ],
+      "id": "1f6f08cd-27db-48b4-8f29-43b431d6bee8",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "name": "DeepSeek account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Get Unprocessed Tweets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark as Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table1": {
+      "main": [
+        [
+          {
+            "node": "Mark as Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as Processed": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Unprocessed Tweets": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  }
+}
