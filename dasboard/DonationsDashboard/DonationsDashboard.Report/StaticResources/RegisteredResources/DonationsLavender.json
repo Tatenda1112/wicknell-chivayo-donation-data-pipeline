@@ -1,0 +1,43 @@
+{
+  "name": "DonationsLavender",
+  "dataColors": [
+    "#4361EE",
+    "#9FB4FF",
+    "#7B5CF5",
+    "#4CC9F0",
+    "#1E2A78",
+    "#C7B8FF",
+    "#3A0CA3",
+    "#56CFE1",
+    "#B5179E",
+    "#80ED99"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1E2A78",
+  "tableAccent": "#4361EE",
+  "good": "#2EC4B6",
+  "neutral": "#FFD166",
+  "bad": "#EF476F",
+  "textClasses": {
+    "callout": {
+      "fontSize": 22,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1E2A78"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1E2A78"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1E2A78"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#4B5563"
+    }
+  }
+}

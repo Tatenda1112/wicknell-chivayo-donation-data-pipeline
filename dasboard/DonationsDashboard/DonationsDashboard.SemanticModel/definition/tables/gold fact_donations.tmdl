@@ -1,0 +1,295 @@
+table 'gold fact_donations'
+	lineageTag: 1edf50a8-66a9-4a60-8718-6be08d247b68
+
+	/// Cash (money rows only) that counts toward the total.
+	measure 'Total Cash USD' = CALCULATE ( SUM ( 'gold fact_donations'[cash_amount_usd] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: 18e8f9f7-f7b4-45ce-9b68-8f215d743388
+
+	/// Cash with status Delivered, Donated or Previously Donated.
+	measure 'Delivered Cash' = CALCULATE ( [Total Cash USD], KEEPFILTERS ( 'gold dim_status'[status_group] = "Delivered" ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: ed721276-2a08-471d-817f-9157ff389504
+
+	/// Cash that has been promised but not yet delivered.
+	measure 'Promised Cash' = CALCULATE ( [Total Cash USD], KEEPFILTERS ( 'gold dim_status'[status_group] = "Promised" ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: eb2edffb-6ebf-4a41-bf04-e3a082c4cadb
+
+	/// Delivered cash as a share of all counted cash.
+	measure 'Delivery Rate' = DIVIDE ( [Delivered Cash], [Total Cash USD] )
+		formatString: 0.0%
+		displayFolder: Dashboard
+		lineageTag: 29b609f3-db21-4120-950b-77523b367533
+
+	/// Number of vehicles (counted lines only).
+	measure 'Total Vehicles' = CALCULATE ( SUM ( 'gold fact_donations'[quantity] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ), KEEPFILTERS ( 'gold dim_donation_type'[donation_type] = "Vehicle" ) )
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 33775657-84ab-4320-8aa3-5603d97949df
+
+	/// Stated value of vehicles.
+	measure 'Vehicle Value USD' = CALCULATE ( SUM ( 'gold fact_donations'[asset_value_usd] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ), KEEPFILTERS ( 'gold dim_donation_type'[donation_type] = "Vehicle" ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: 1f474522-ae70-41e1-974a-68306174fcba
+
+	/// Number of houses (counted lines only).
+	measure Houses = CALCULATE ( SUM ( 'gold fact_donations'[quantity] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ), KEEPFILTERS ( 'gold dim_donation_type'[donation_type] = "House" ) )
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 293d4be7-e3ba-45d7-86a5-26f60272c068
+
+	/// Stated value of houses.
+	measure 'House Value USD' = CALCULATE ( SUM ( 'gold fact_donations'[asset_value_usd] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ), KEEPFILTERS ( 'gold dim_donation_type'[donation_type] = "House" ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: eaec3a5f-0eee-440c-8ba3-318acf63838e
+
+	/// Stated value of other giving (equipment, fuel, education and so on).
+	measure 'Other Giving Value USD' = CALCULATE ( SUM ( 'gold fact_donations'[asset_value_usd] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ), KEEPFILTERS ( 'gold dim_donation_type'[donation_type] = "Other" ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: 9bf95aa5-f4e2-4151-a540-e719f98bcf23
+
+	/// Distinct recipients with at least one counted donation line.
+	measure Recipients = CALCULATE ( DISTINCTCOUNT ( 'gold fact_donations'[recipient_key] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ) )
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 1426b9b4-88f2-4744-a64d-c2202e4dd4b4
+
+	/// Cash plus the stated value of vehicles, houses and other gifts (counted lines only).
+	measure 'Total Value USD' = CALCULATE ( SUM ( 'gold fact_donations'[cash_amount_usd] ) + SUM ( 'gold fact_donations'[asset_value_usd] ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: a229a296-b2d1-41ce-a4b4-57d63b7d070a
+
+	/// Total value for the 5 recipients with the highest total value in the current selection.
+	measure 'Top 5 Value' = VAR t = TOPN ( 5, FILTER ( ALLSELECTED ( 'gold dim_recipient'[recipient_name] ), NOT ISBLANK ( [Total Value USD] ) ), [Total Value USD], DESC, 'gold dim_recipient'[recipient_name], ASC ) RETURN CALCULATE ( [Total Value USD], KEEPFILTERS ( t ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: 344e99fe-fc2d-4ab6-b14c-d5f5c106e0ca
+
+	/// Cash for the 10 recipients with the most cash in the current selection.
+	measure 'Top 10 Cash' = VAR t = TOPN ( 10, FILTER ( ALLSELECTED ( 'gold dim_recipient'[recipient_name] ), NOT ISBLANK ( [Total Cash USD] ) ), [Total Cash USD], DESC, 'gold dim_recipient'[recipient_name], ASC ) RETURN CALCULATE ( [Total Cash USD], KEEPFILTERS ( t ) )
+		formatString: \$#,0
+		displayFolder: Dashboard
+		lineageTag: c57b317e-cf65-4e68-9494-20404d161078
+
+	/// Vehicles for the 10 recipients with the most vehicles in the current selection.
+	measure 'Top 10 Vehicles' = VAR t = TOPN ( 10, FILTER ( ALLSELECTED ( 'gold dim_recipient'[recipient_name] ), NOT ISBLANK ( [Total Vehicles] ) ), [Total Vehicles], DESC, 'gold dim_recipient'[recipient_name], ASC ) RETURN CALCULATE ( [Total Vehicles], KEEPFILTERS ( t ) )
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: a4ef2cf6-6698-40e2-8af4-a20296565b22
+
+	/// Donation lines included in the totals.
+	measure 'Donation Lines Counted' = CALCULATE ( COUNTROWS ( 'gold fact_donations' ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = TRUE () ) ) + 0
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: b069a056-49bc-4a48-baa4-d08aaac11aa5
+
+	/// Repeated pledges, declined gifts and non-donations kept for audit but not added.
+	measure 'Rows Not Counted' = CALCULATE ( COUNTROWS ( 'gold fact_donations' ), KEEPFILTERS ( 'gold fact_donations'[counts_toward_total] = FALSE () ) ) + 0
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 021e09d4-341f-4a3d-875b-1cf348eb54bd
+
+	/// Fields corrected after reviewing the LLM extraction.
+	measure 'LLM Corrections' = CALCULATE ( COUNTROWS ( 'silver data_quality_issues' ), KEEPFILTERS ( 'silver data_quality_issues'[issue_type] = "LLM_CORRECTION" ) ) + 0
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 5fce8df0-4adb-4de0-9ce2-c360a776d23c
+
+	/// Data quality issues logged in Silver.
+	measure Issues = COUNTROWS ( 'silver data_quality_issues' ) + 0
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 415d05c8-fc83-45ba-9a32-0f309ac6f202
+
+	/// Extracted rows excluded because they are not donation lines.
+	measure 'Excluded Rows' = COUNTROWS ( 'silver excluded' ) + 0
+		formatString: #,0
+		displayFolder: Dashboard
+		lineageTag: 0d054869-65b8-4816-b345-6a917a4bc590
+
+	column donation_line_id
+		dataType: string
+		lineageTag: b931512d-b6f5-4295-97e2-ce27a6544cd2
+		summarizeBy: none
+		sourceColumn: donation_line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column donation_type_key
+		dataType: int64
+		formatString: 0
+		lineageTag: f2b748a4-4915-48f8-90c3-35095378cd92
+		summarizeBy: none
+		sourceColumn: donation_type_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_donation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: decfff5e-88bc-474b-a25b-a4a666256b1b
+		summarizeBy: none
+		sourceColumn: source_donation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tweet_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b7710f8-d25f-4ae2-b3bb-8de340f13820
+		summarizeBy: none
+		sourceColumn: tweet_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fd45956-b557-4f7d-93c4-476e682fab8c
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_key
+		dataType: int64
+		formatString: 0
+		lineageTag: f883703e-cadb-4ab4-b316-f7a9710de44a
+		summarizeBy: none
+		sourceColumn: recipient_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_key
+		dataType: int64
+		formatString: 0
+		lineageTag: e4aa0681-eb92-45d1-8469-a6ff5768eef8
+		summarizeBy: none
+		sourceColumn: status_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 066a8124-dd86-4a69-b448-34a3af627926
+		summarizeBy: none
+		sourceColumn: item_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_name
+		dataType: string
+		lineageTag: 7adef3a4-95e4-4224-a348-5df5f0314e03
+		summarizeBy: none
+		sourceColumn: item_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: double
+		lineageTag: d369ab08-029d-4743-bc00-b1c7ce04351d
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column currency_original
+		dataType: string
+		lineageTag: 997103ff-992f-40be-9590-d645146eba8d
+		summarizeBy: none
+		sourceColumn: currency_original
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_original
+		dataType: double
+		lineageTag: aa45c87e-9e37-40e8-a68f-25682538943d
+		summarizeBy: sum
+		sourceColumn: amount_original
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cash_amount_usd
+		dataType: double
+		lineageTag: 2a963972-17d1-4f81-bed7-0c98a7e5c88c
+		summarizeBy: sum
+		sourceColumn: cash_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column asset_value_usd
+		dataType: double
+		lineageTag: d2290eff-7aa8-481f-9220-bd57ba689d70
+		summarizeBy: sum
+		sourceColumn: asset_value_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column usd_is_converted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e875ce92-525a-474e-83b1-e9a93d69f2d0
+		summarizeBy: none
+		sourceColumn: usd_is_converted
+
+		annotation SummarizationSetBy = Automatic
+
+	column counts_toward_total
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3e3ff8bc-0ed1-464c-b7ac-39694605778d
+		summarizeBy: none
+		sourceColumn: counts_toward_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column not_counted_reason
+		dataType: string
+		lineageTag: bd43c150-40f7-41f8-8a5b-cfcc934c8df2
+		summarizeBy: none
+		sourceColumn: not_counted_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column overlap_group
+		dataType: string
+		lineageTag: bc1c20ec-d454-498c-b3f1-87bf28b4964d
+		summarizeBy: none
+		sourceColumn: overlap_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_flag
+		dataType: string
+		lineageTag: b1f9626c-d742-406f-842f-6ae96ba63e73
+		summarizeBy: none
+		sourceColumn: review_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_donations' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_fact_donations = Source{[Schema="gold",Item="fact_donations"]}[Data]
+				in
+				    gold_fact_donations
+

@@ -1,0 +1,911 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "gold_dim_status.status_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_status",
+			          "ConceptualProperty": "status_group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Status group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_item.item_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_item",
+			          "ConceptualProperty": "item_category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vehicle class": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Nature of cash": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.total_vehicles": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Total Vehicles"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vehicles": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.delivery_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Delivery Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash delivered": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.houses": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Houses"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Houses": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.total_value_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Total Value USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.total_cash_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Total Cash USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total cash (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.top_5_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Top 5 Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.recipients": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Recipients"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recipients": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.vehicle_value_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Vehicle Value USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value of vehicles (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.top_10_cash": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Top 10 Cash"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.top_10_vehicles": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Top 10 Vehicles"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vehicles": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.other_giving_value_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Other Giving Value USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.house_value_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "House Value USD"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Stated house value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Stated value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.donation_lines_counted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Donation Lines Counted"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Donation lines counted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.issues": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Issues"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Issues": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.excluded_rows": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Excluded Rows"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Excluded rows": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.llm_corrections": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "LLM Corrections"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "LLM corrections": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations.rows_not_counted": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations",
+			          "ConceptualProperty": "Rows Not Counted"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Rows not counted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_donation_type.donation_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_donation_type",
+			          "ConceptualProperty": "donation_type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Donation type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Gift type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_date.year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_date",
+			          "ConceptualProperty": "year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Year": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_date.year_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_date",
+			          "ConceptualProperty": "year_month"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_recipient.recipient_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_recipient",
+			          "ConceptualProperty": "recipient_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recipient": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_dim_recipient.recipient_group": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold dim_recipient",
+			          "ConceptualProperty": "recipient_group"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recipient group": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "silver_data_quality_issues.issue_label": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "silver data_quality_issues",
+			          "ConceptualProperty": "issue_label"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Issue": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "silver_excluded.tweet_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "silver excluded",
+			          "ConceptualProperty": "tweet_date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "silver_excluded.recipient_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "silver excluded",
+			          "ConceptualProperty": "recipient_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recipient": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "silver_excluded.amount_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "silver excluded",
+			          "ConceptualProperty": "amount_usd"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Amount (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "silver_excluded.reason_excluded": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "silver excluded",
+			          "ConceptualProperty": "reason_excluded"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Reason excluded": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.full_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "full_date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.recipient_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "recipient_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recipient": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.donation_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "donation_type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.item_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "item_category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Item": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.quantity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "quantity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Qty": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.cash_amount_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "cash_amount_usd"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Cash (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.asset_value_usd": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "asset_value_usd"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Asset value (USD)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.commitment_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "commitment_status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.counts_toward_total": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "counts_toward_total"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Counted": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.tweet_url": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "tweet_url"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Tweet": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "gold_fact_donations_flat.source_donation_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "gold fact_donations_flat",
+			          "ConceptualProperty": "source_donation_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Source #": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

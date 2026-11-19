@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\donations-datawarehouse\\scripts\\automation\\run_pipeline.ps1\""
+      },
+      "name": "Load warehouse (SQL Server)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [2200, 300],
+      "executeOnce": true
+    }
+  ],
+  "connections": {}
+}

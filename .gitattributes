@@ -1,0 +1,4 @@
+# Keep data files byte-for-byte: the SQL Server loader expects their original line endings
+*.csv -text
+*.pbix binary
+*.png binary

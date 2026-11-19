@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DonationsDashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5676bc48-5fc5-4c8c-a71e-515f754ee1fd"
+  }
+}

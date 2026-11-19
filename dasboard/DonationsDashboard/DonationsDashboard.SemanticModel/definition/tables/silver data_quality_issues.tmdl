@@ -1,0 +1,96 @@
+table 'silver data_quality_issues'
+	lineageTag: 0a3710f2-4f71-4250-9fb1-522b44913c4d
+
+	column issue_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 709edba0-bd39-4068-b170-573fc10602e9
+		summarizeBy: none
+		sourceColumn: issue_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_table
+		dataType: string
+		lineageTag: f8615cca-5751-4bbd-a449-9f31ea9349fa
+		summarizeBy: none
+		sourceColumn: source_table
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_donation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e94ecc2c-d100-43b2-b459-84b04fbc9d65
+		summarizeBy: none
+		sourceColumn: source_donation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		dataType: string
+		lineageTag: 97a82b1d-ddb2-4936-ba7a-9a9828076a2e
+		summarizeBy: none
+		sourceColumn: issue_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		lineageTag: a6ada854-a9f7-4378-9070-20cdcdba56d6
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 0ef9ca9d-7894-4545-94e7-b80196d848b7
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column detected_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1258ff1c-4c57-4eca-8069-ebf5700235f9
+		summarizeBy: none
+		sourceColumn: detected_at
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = DateTime
+
+	column issue_label
+		dataType: string
+		lineageTag: 51f1232a-dc64-48b5-a378-a835cdc7a64a
+		summarizeBy: none
+		sourceColumn: issue_label
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'silver data_quality_issues' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    silver_data_quality_issues = Source{[Schema="silver",Item="data_quality_issues"]}[Data],
+				    AddLabel = Table.AddColumn(silver_data_quality_issues, "issue_label", each
+				        if [issue_type] = "NOT_COUNTED_IN_TOTAL" then
+				            (if [description] <> null and Text.StartsWith([description], "Duplicate") then "Duplicate"
+				             else if [description] <> null and Text.StartsWith([description], "Declined") then "Declined"
+				             else if [description] <> null and Text.StartsWith([description], "Not a donation") then "Not a donation"
+				             else if [description] <> null and Text.StartsWith([description], "Family") then "Family gift"
+				             else "Not counted (other)")
+				        else if [issue_type] = "EXCLUDED_NOT_A_DONATION" then "Excluded row"
+				        else if [issue_type] = "OVERLAP_REVIEW" then "Overlap warning"
+				        else if [issue_type] = "LLM_CORRECTION" then "LLM correction"
+				        else if [issue_type] = "REVIEW_FLAG" then "Review flag"
+				        else if [issue_type] = "AMOUNT_NOT_COMPUTABLE" then "Amount not computable"
+				        else [issue_type], type text)
+				in
+				    AddLabel
+
+	annotation PBI_ResultType = Table
+

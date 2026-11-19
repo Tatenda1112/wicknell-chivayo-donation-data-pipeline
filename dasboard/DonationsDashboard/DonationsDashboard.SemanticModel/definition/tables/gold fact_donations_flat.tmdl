@@ -1,0 +1,252 @@
+table 'gold fact_donations_flat'
+	lineageTag: 3abbcfd4-4e77-43fa-aacf-8ffdc2658562
+
+	column donation_line_id
+		dataType: string
+		lineageTag: fef8e1de-6e5d-4694-8f17-e3cc990357ff
+		summarizeBy: none
+		sourceColumn: donation_line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_donation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 241a27fd-8e45-4183-9564-23c37fcf677d
+		summarizeBy: none
+		sourceColumn: source_donation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tweet_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c4e9b89-fc3d-4908-9f5c-58d643636767
+		summarizeBy: none
+		sourceColumn: tweet_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tweet_url
+		dataType: string
+		lineageTag: c269d478-fb35-4edb-92b8-bf0ee0991465
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: tweet_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 860ccff1-7340-491e-8162-d8fdc00f0088
+		summarizeBy: none
+		sourceColumn: full_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: da76f583-2aa7-4e95-8366-f464321f4725
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: a89f85e0-46d9-476d-8505-9caf95f4a7be
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: c880e6e7-d1aa-4393-b1ed-a59f9d1c13c2
+		summarizeBy: none
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: d1aaec3f-5eb7-4d63-be01-7f705d525dfd
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: ad84fcb2-8411-4781-a978-6d57a36c05b2
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column donation_type
+		dataType: string
+		lineageTag: e6d966da-b1d1-42f5-b9ae-eb7edf9eba49
+		summarizeBy: none
+		sourceColumn: donation_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_category
+		dataType: string
+		lineageTag: 5000e41f-00d1-4656-885a-58e57438ddeb
+		summarizeBy: none
+		sourceColumn: item_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_name
+		dataType: string
+		lineageTag: 85e53fb6-c387-492e-9095-6d3fb8f4b4ae
+		summarizeBy: none
+		sourceColumn: item_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_name
+		dataType: string
+		lineageTag: 0b2fd7a9-bb43-4760-aff4-fb1fdd93c0d5
+		summarizeBy: none
+		sourceColumn: recipient_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_type
+		dataType: string
+		lineageTag: 086b3844-be3d-4c49-a9d4-97b62a016c57
+		summarizeBy: none
+		sourceColumn: recipient_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_group
+		dataType: string
+		lineageTag: 29b2f6f2-4fb3-4c86-a2aa-e80e8e46e5e0
+		summarizeBy: none
+		sourceColumn: recipient_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column commitment_status
+		dataType: string
+		lineageTag: 20eab43a-fc67-40fc-8c4d-430d519a9528
+		summarizeBy: none
+		sourceColumn: commitment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_group
+		dataType: string
+		lineageTag: f6e0063e-1408-449f-acff-2e9e6d49ff83
+		summarizeBy: none
+		sourceColumn: status_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: double
+		formatString: #,0
+		lineageTag: e811df6c-2317-4d9b-b88b-9408ee13b4de
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency_original
+		dataType: string
+		lineageTag: 3049f5f2-fdef-48dc-bbe7-bdb33c0f38fa
+		summarizeBy: none
+		sourceColumn: currency_original
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_original
+		dataType: double
+		formatString: #,0
+		lineageTag: c6296862-4c21-42cf-9ce7-f0d5350bb890
+		summarizeBy: sum
+		sourceColumn: amount_original
+
+		annotation SummarizationSetBy = Automatic
+
+	column cash_amount_usd
+		dataType: double
+		formatString: #,0
+		lineageTag: e9c24cb9-e474-412f-8448-c2f43f2c2af7
+		summarizeBy: sum
+		sourceColumn: cash_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_value_usd
+		dataType: double
+		formatString: #,0
+		lineageTag: d2e0add9-5925-4f26-ba92-438ed4e6c279
+		summarizeBy: sum
+		sourceColumn: asset_value_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column usd_is_converted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 55d925c6-0dfb-4e56-ac98-f0c72481534c
+		summarizeBy: none
+		sourceColumn: usd_is_converted
+
+		annotation SummarizationSetBy = Automatic
+
+	column counts_toward_total
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2efc51f7-3284-4666-a8e1-e455f04b1725
+		summarizeBy: none
+		sourceColumn: counts_toward_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column not_counted_reason
+		dataType: string
+		lineageTag: 8c4f9b2b-9393-41be-85dc-74c0a48d8e62
+		summarizeBy: none
+		sourceColumn: not_counted_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column overlap_group
+		dataType: string
+		lineageTag: 4c8554d2-dcd0-4474-9e17-b05c7401fcb2
+		summarizeBy: none
+		sourceColumn: overlap_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_flag
+		dataType: string
+		lineageTag: 54da35aa-342c-4bf5-b009-28e3ee17923b
+		summarizeBy: none
+		sourceColumn: review_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold fact_donations_flat' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_fact_donations_flat = Source{[Schema="gold",Item="fact_donations_flat"]}[Data]
+				in
+				    gold_fact_donations_flat
+
+	annotation PBI_ResultType = Table
+

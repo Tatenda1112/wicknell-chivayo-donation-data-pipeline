@@ -1,0 +1,45 @@
+table 'gold dim_recipient'
+	lineageTag: 6f120e6e-bd34-4913-b8a3-08f3cf456a6c
+
+	column recipient_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 26ad7112-b517-4263-90c1-8e2a5a5184c7
+		summarizeBy: none
+		sourceColumn: recipient_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_name
+		dataType: string
+		lineageTag: d49a9d9b-4b7a-475c-87ba-bd6da990b82f
+		summarizeBy: none
+		sourceColumn: recipient_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_type
+		dataType: string
+		lineageTag: 02b6328a-5eda-4f74-b808-5ce751a1ede2
+		summarizeBy: none
+		sourceColumn: recipient_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_group
+		dataType: string
+		lineageTag: eb9eb730-bebb-4014-8962-0ed4ce623aa8
+		summarizeBy: none
+		sourceColumn: recipient_group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_recipient' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_dim_recipient = Source{[Schema="gold",Item="dim_recipient"]}[Data]
+				in
+				    gold_dim_recipient
+

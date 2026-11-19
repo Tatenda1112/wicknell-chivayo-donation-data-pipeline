@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["gold fact_donations","gold dim_date","gold dim_recipient","gold dim_donation_type","gold dim_status","gold dim_item","gold fact_donations_flat","silver data_quality_issues","silver excluded"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'gold fact_donations'
+ref table 'gold dim_date'
+ref table DateTableTemplate_52819906-73b2-4d11-a0d5-827d6c455c75
+ref table LocalDateTable_12340f39-fd16-4856-b4ba-dc0d830bfa81
+ref table 'gold dim_recipient'
+ref table 'gold dim_donation_type'
+ref table 'gold dim_status'
+ref table 'gold dim_item'
+ref table 'gold fact_donations_flat'
+ref table 'silver data_quality_issues'
+ref table 'silver excluded'
+
+ref cultureInfo en-US
+

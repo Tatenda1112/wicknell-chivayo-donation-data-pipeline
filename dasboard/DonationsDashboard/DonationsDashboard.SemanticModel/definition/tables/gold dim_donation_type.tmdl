@@ -1,0 +1,39 @@
+table 'gold dim_donation_type'
+	lineageTag: 800d73b9-3222-44ec-89c0-41e5a42532c0
+
+	column donation_type_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e2fbcf2-ddd0-4a44-b51d-36eec270c654
+		summarizeBy: none
+		sourceColumn: donation_type_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column donation_type
+		dataType: string
+		lineageTag: dedad19b-3109-4973-8c9e-5f39cf507265
+		summarizeBy: none
+		sourceColumn: donation_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 5a12cd00-b8b6-4355-af6e-1280eb550ce5
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_donation_type' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_dim_donation_type = Source{[Schema="gold",Item="dim_donation_type"]}[Data]
+				in
+				    gold_dim_donation_type
+
+	annotation PBI_ResultType = Table
+

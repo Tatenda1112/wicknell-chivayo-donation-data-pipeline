@@ -1,0 +1,22 @@
+# Secrets: holds the Postgres password (copy pipeline.env.example to pipeline.env)
+pipeline.env
+
+# Run logs
+logs/
+
+# Private academic work and survey respondent data (not part of the warehouse)
+Chapter_4_*.docx
+SPSS_data/
+
+# CSV backups and half-written exports
+*.csv.new
+datasets/raw_tweets/raw_tweets_before_automation.csv
+
+# Power BI local cache and per-user settings
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Office / OS noise
+~$*
+Thumbs.db
+.DS_Store

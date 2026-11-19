@@ -1,0 +1,60 @@
+log_id,source_donation_id,field,old_value,new_value,reason
+1,17,currency,ZWG,USD,"Source said ZWG; tweet text says ""US20 000"" and every other amount in the tweet is USD."
+2,136,currency,ZWG,USD,"Source said ZWG; tweet says ""1 MILLION USD or ZIG equivalent"" - USD is the stated figure."
+3,168,amount,20000.0,10000,"Source had 20,000 which already included Busi Nkomo's 10,000 (own row #169). Jabulani gets 10,000 only."
+4,349,amount,20000.0,10000,"Source had 20,000 for Mai Chitsinde but 10,000 of it is the group share already in row #350. Mai Chitsinde gets 10,000."
+5,362,currency,ZWG,USD,"Source said ZWG; tweet says ""20 thousand dollars"" cash."
+6,382,amount,2100000.0,2000000,"Source had 2,100,000 ZAR and 100,000 USD in one row. Tweet: ZAR 2,000,000 for the holiday; the USD 100,000 cash is its own row #383."
+7,705,currency,ZAR,USD,"Source said ZAR; tweet says ""$50 000"" (2013)."
+8,728,recipient_name,Selma,"Selma, Sandra and Shamiso","Tweet: Selma, Sandra and Shamiso each receive USD 15,000 (3 people)."
+9,20,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+10,21,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+11,22,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+12,23,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+13,24,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+14,25,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+15,26,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+16,27,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+17,28,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+18,29,vehicle row cash value,100000 ZAR (on vehicle row),moved to money table,Cash is separate from the car; car has no stated value.
+19,62,vehicle row cash value,1000 USD (on vehicle row),5 x 1000 = 5000 moved to money table,Cash for fuel is separate from the car.
+20,63,vehicle row cash value,1000 USD (on vehicle row),10 x 1000 = 10000 moved to money table,Cash for fuel is separate from the car.
+21,70,vehicle row cash value,5000 USD (on vehicle row),moved to money table,Cash is separate from the car.
+22,71,vehicle row cash value,5000 USD (on vehicle row),moved to money table,Cash is separate from the car.
+23,251,vehicle row cash value,50000 USD (on vehicle row),moved to money table,Cash is separate from the car.
+24,252,vehicle row cash value,50000 USD (on vehicle row),moved to money table,Cash is separate from the car.
+25,473,vehicle value,10000 USD,moved to money table,"Aqua and USD 10,000 cash are two gifts; the 10,000 is not the car value."
+26,426,vehicle value,2000 USD,null (cash already in row #427),"The 2,000 USD is cash for fuel (row #427), not the Aqua value. Avoids double count."
+27,20,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+28,21,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+29,22,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+30,23,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+31,24,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+32,25,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+33,26,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+34,27,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+35,28,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+36,29,vehicle value,100000.0 ZAR,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+37,62,vehicle value,1000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+38,63,vehicle value,1000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+39,70,vehicle value,5000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+40,71,vehicle value,5000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+41,108,quantity,82,77,Tweet: 77 Hilux for church leaders + 5 for media team = 82. Source had 82 here AND 5 again in #109 (double count of 5).
+42,154,donation_type,Equipment,Vehicle (Ambulance),Ambulances are vehicles; moved so total vehicle counts are complete.
+43,217,vehicle value / item,900000.0 USD,unit 60000 x 15,"""Over USD 900,000"" for 15 vehicles; 60,000 each derived by source."
+44,219,vehicle value,107000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+45,239,donation_type,Equipment,Vehicle (Ambulance),Ambulances are vehicles; moved so total vehicle counts are complete.
+46,242,donation_type,Equipment,Vehicle (Ambulance),Ambulances are vehicles; moved so total vehicle counts are complete.
+47,251,vehicle value,50000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+48,252,vehicle value,50000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+49,346,vehicle value / item,None ZWG,unit 25000 x 26,"Source currency ZWG; tweet says each gets an Aqua / C-Class ""or any other"" worth 25 thousand - USD. Wording ambiguous, check."
+50,418,vehicle value / item,850000.0 USD,unit 8500 x 100,"""AKWAYA"" is Shona slang for Toyota Aqua (8,500 each fits an Aqua). Source labelled them ""pickup trucks""."
+51,426,vehicle value,2000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+52,473,vehicle value,10000.0 USD,,That number is cash on top of the car (or not the car value) - removed from vehicle value.
+53,64,quantity,"25 (one row, two models)",15 Fortuner + 60 Hilux single cab,Multiplied per-district amounts by 3 districts and split the two models.
+54,254,quantity,5 (Hilux and Aqua mixed),1 Hilux + 4 Aqua,"Tweet: ""1 pickup and 4 Akwayas"" per leader. Split by model."
+55,255,quantity,5 (Hilux and Aqua mixed),1 Hilux + 4 Aqua,"Tweet: ""1 pickup and 4 Akwayas"" per leader. Split by model."
+56,116,new vehicle row,,Toyota Aqua x1,Aqua mentioned alongside the cash but missing from source.
+57,216,donation_type,Cash,House,"USD 150,000 cash is explicitly for buying a house - moved to house table, removed from money."
+58,47,donation_type,excluded,House,"House purchase (max ZAR 50M) - moved into house table flagged as personal purchase, not a gift."
+59,378,quantity,3 (one row),3 rows x 1,Split three different devices into separate rows.

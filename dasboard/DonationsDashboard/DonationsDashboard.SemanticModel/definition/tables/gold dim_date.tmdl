@@ -1,0 +1,96 @@
+table 'gold dim_date'
+	lineageTag: 0d6710c9-0d96-4235-8332-6a4a0fdb3c8d
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 71beab78-0a6b-445c-9d9d-39a9da0eb108
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e51e6ef8-9cff-4060-a74b-fa947609381a
+		summarizeBy: none
+		sourceColumn: full_date
+
+		variation Variation
+			isDefault
+			relationship: 43621235-92ae-4574-bb14-31959b088df9
+			defaultHierarchy: LocalDateTable_12340f39-fd16-4856-b4ba-dc0d830bfa81.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 898ee94b-c12f-4676-b6f5-4e9f3ef49c32
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: ff0beec6-c028-48dd-ae31-a60b3b802baf
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 47d579ee-2eb3-4eb3-86a0-543847bcfeb9
+		summarizeBy: none
+		sourceColumn: month_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: eaac2787-081b-45b0-b28e-d0e70dfb9fe7
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 346c77f3-a6d8-412e-8e51-17e9cb7c3942
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d1b5fe2-929a-4a12-b9bc-036166ebe282
+		summarizeBy: none
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: d23d341e-f171-4b2c-9dd0-22e8dd9ca305
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_date' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_dim_date = Source{[Schema="gold",Item="dim_date"]}[Data]
+				in
+				    gold_dim_date
+

@@ -1,0 +1,37 @@
+relationship 43621235-92ae-4574-bb14-31959b088df9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.full_date
+	toColumn: LocalDateTable_12340f39-fd16-4856-b4ba-dc0d830bfa81.Date
+
+relationship AutoDetected_10c9b4f7-eb23-4c5c-b55b-59ca4a60d06c
+	fromColumn: 'gold fact_donations'.donation_type_key
+	toColumn: 'gold dim_donation_type'.donation_type_key
+
+relationship AutoDetected_8498d065-f881-43a3-a352-0fee07702756
+	fromColumn: 'gold fact_donations'.date_key
+	toColumn: 'gold dim_date'.date_key
+
+relationship AutoDetected_329e4465-b574-4c7d-82ee-c150fb849dbf
+	fromColumn: 'gold fact_donations'.recipient_key
+	toColumn: 'gold dim_recipient'.recipient_key
+
+relationship AutoDetected_2d539142-0164-4758-8bc0-516dd21105db
+	fromColumn: 'gold fact_donations'.status_key
+	toColumn: 'gold dim_status'.status_key
+
+relationship AutoDetected_1bfd9e84-6757-4e77-94d6-2b34a438b1c0
+	fromColumn: 'gold fact_donations'.item_key
+	toColumn: 'gold dim_item'.item_key
+
+relationship 15fe671d-b3c5-447a-8c77-e09e5b5f1455
+	fromColumn: 'gold fact_donations_flat'.full_date
+	toColumn: 'gold dim_date'.full_date
+
+relationship 2a403460-8baf-4a41-8cac-6fe22967253f
+	fromColumn: 'gold fact_donations_flat'.donation_type
+	toColumn: 'gold dim_donation_type'.donation_type
+
+relationship e142546f-ef97-4f71-9b94-956d4d885666
+	fromColumn: 'gold fact_donations_flat'.commitment_status
+	toColumn: 'gold dim_status'.commitment_status
+

@@ -1,0 +1,39 @@
+table 'gold dim_status'
+	lineageTag: cbdf41dc-25a3-4182-a3f6-4d30b59bc1f3
+
+	column status_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 46e758ae-3c57-4785-8b70-814e2a9b4210
+		summarizeBy: none
+		sourceColumn: status_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column commitment_status
+		dataType: string
+		lineageTag: 8f500493-8dda-46fe-a6a3-93cea7a2556b
+		summarizeBy: none
+		sourceColumn: commitment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_group
+		dataType: string
+		lineageTag: 45073e3b-00cc-4680-9e6a-cd654263a69f
+		summarizeBy: none
+		sourceColumn: status_group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_status' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    gold_dim_status = Source{[Schema="gold",Item="dim_status"]}[Data]
+				in
+				    gold_dim_status
+
+	annotation PBI_ResultType = Table
+

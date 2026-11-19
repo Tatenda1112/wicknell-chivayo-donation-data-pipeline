@@ -1,0 +1,155 @@
+table 'silver excluded'
+	lineageTag: 4d872400-2988-47f3-9c59-6fc7e2cbc3bd
+
+	column source_donation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 43f31e22-c65e-46f4-b1f0-8b9bdfd31ab3
+		summarizeBy: none
+		sourceColumn: source_donation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tweet_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1106daae-e5c0-4b27-88a1-e56ebb214089
+		summarizeBy: none
+		sourceColumn: tweet_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tweet_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c8add20f-ef88-4a02-8f5c-6516d7830cf9
+		summarizeBy: none
+		sourceColumn: tweet_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column donation_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f460cf75-a4f2-485a-b206-51c589c5d8e7
+		summarizeBy: none
+		sourceColumn: donation_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column donor_name
+		dataType: string
+		lineageTag: 03310bed-6adf-4860-90ba-5e624725698d
+		summarizeBy: none
+		sourceColumn: donor_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_name
+		dataType: string
+		lineageTag: dfcfc830-bacd-4422-8738-d5356e6c9dd2
+		summarizeBy: none
+		sourceColumn: recipient_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_type
+		dataType: string
+		lineageTag: 69ac2c2c-3c2d-4281-8de1-a20105e88bc9
+		summarizeBy: none
+		sourceColumn: recipient_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column allocation_scope
+		dataType: string
+		lineageTag: d9247502-75ee-4fc5-b459-a7d57535527e
+		summarizeBy: none
+		sourceColumn: allocation_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column donation_type_in_source
+		dataType: string
+		lineageTag: 7aaf69fa-c7c2-4bce-aa9d-fbbcce8cb66a
+		summarizeBy: none
+		sourceColumn: donation_type_in_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_name
+		dataType: string
+		lineageTag: a693433a-a1d2-422c-9374-ed6b2ec5828a
+		summarizeBy: none
+		sourceColumn: item_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_original
+		dataType: double
+		formatString: #,0
+		lineageTag: dbe4a585-82e6-4c8a-9c2e-77a5ece921bf
+		summarizeBy: sum
+		sourceColumn: amount_original
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 9ab35a3a-0a32-4932-95b3-1d796cdef71c
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_usd
+		dataType: double
+		formatString: #,0
+		lineageTag: e2cf6db0-35bd-486b-9aaf-fe78495b407e
+		summarizeBy: sum
+		sourceColumn: amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+	column reason_excluded
+		dataType: string
+		lineageTag: 64e600d8-ecda-444d-912c-4ef9069e509f
+		summarizeBy: none
+		sourceColumn: reason_excluded
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_excerpt
+		dataType: string
+		lineageTag: f01e4acc-5356-45b6-b4fb-caab8aa22747
+		summarizeBy: none
+		sourceColumn: source_excerpt
+
+		annotation SummarizationSetBy = Automatic
+
+	column dwh_load_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4de51e91-9ac9-46bd-a24e-77869a595dc0
+		summarizeBy: none
+		sourceColumn: dwh_load_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = DateTime
+
+	partition 'silver excluded' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-07NN6T8", "DonationsDW"),
+				    silver_excluded = Source{[Schema="silver",Item="excluded"]}[Data]
+				in
+				    silver_excluded
+
+	annotation PBI_ResultType = Table
+
